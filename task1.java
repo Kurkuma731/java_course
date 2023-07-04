@@ -1,23 +1,44 @@
-// 1. Вычислить n-ое треугольного число(сумма чисел от 1 до n), n! (произведение чисел от 1 до n).
-// ===============================================================================================
+// Вычислить n-ое треугольного число(сумма чисел от 1 до n), а так же n! (произведение чисел от 1 до n)
+// Ввод:5
+// Треугольное число 1 + 2 + 3 + 4 + 5 = 15
+// n! 1 * 2 * 3 * 4 * 5 = 120
 
-package Seminars.Seminar1;
 
 import java.util.Scanner;
 
-public class hw1_1 {
-    public static void main(String[] args) {
-        System.out.printf("Введите число n: ");
-        Scanner num = new Scanner(System.in);
-        int n = num.nextInt();
+class task1 {
+    static int getTriangleNumber(int n) {
         int sum = 0;
-        int mult = 1;
-        for (int i = 1; i <= n; i++) {
-            sum += i;
-            mult *= i;
+        for (int index = 0; index < n; index++) {
+            sum += index + 1;
         }
-        System.out.printf("Сумма чисел от 1 до %d: %d%n", n, sum);
-        System.out.printf("Произведение чисел от 1 до %d: %d%n", n, mult);
-        num.close();
+        return sum;
+    }
+
+    static int getFactorial(int n) {
+        int result = 1;
+        for (int index = 0; index < n; index++) {
+            result *= index + 1;
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = 0;
+        System.out.printf("Enter natural number: ");
+        if (!scn.hasNextInt()) {
+            System.out.println("You entered wrong number!!!");
+        } else {
+            n = scn.nextInt();
+            if (n < 1)
+                System.out.println("You should enter positive number only!!!");
+            else {
+                System.out.printf("The triangle number of %d is: %s! ", n, getTriangleNumber(n));
+                System.out.println();
+                System.out.printf("The factorial of %d is: %s! ", n, getFactorial(n));
+            }
+        }
+        scn.close();
     }
 }
